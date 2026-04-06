@@ -10,11 +10,10 @@ test.describe('Inventory and Cart Flow', () => {
         const productPage = new ProductPage(page);
 
         // 1.Setup
-
         await loginPage.navigate();
         await loginPage.login(users.standard.user, users.standard.pass);
 
-        // 2. Interaction
+        // 2. Interactions
         await productPage.addFirstProductToCart();
 
         // 3. Validation ("The Check")

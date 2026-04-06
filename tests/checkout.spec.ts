@@ -4,10 +4,8 @@ import { ProductPage } from './pages/ProductPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import users from '../data/users.json';
 
-// The group (The "Folder")
 test.describe('Full Purchase Flow', () => {
 
-    // The actual test (The "File" inside the folder)
     test('should complete a purchase from start to finish', async ({ page }) => {
         const loginPage = new LoginPage(page);
         const productPage = new ProductPage(page);
@@ -24,5 +22,5 @@ test.describe('Full Purchase Flow', () => {
         await checkoutPage.finishBtn.click();
 
         await expect(checkoutPage.successMessage).toHaveText('Thank you for your order!');
-    }); // End of test
-}); // End of describe
+    });
+}); 
