@@ -1,14 +1,17 @@
-{
-  "standard": {
+[
+  {
     "user": "standard_user",
-    "pass": "secret_sauce"
+    "pass": "secret_sauce",
+    "type": "valid"
   },
-  "locked": {
+  {
     "user": "locked_out_user",
-    "pass": "secret_sauce"
+    "pass": "secret_sauce",
+    "type": "locked"
   },
-  "problem": {
+  {
     "user": "problem_user",
-    "pass": "secret_sauce"
+    "pass": "secret_sauce",
+    "type": "problem"
   }
-}
+]
