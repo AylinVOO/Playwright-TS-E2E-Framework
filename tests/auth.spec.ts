@@ -13,10 +13,16 @@ interface UserData {
 test.describe('Login Security Tests', () => {
     // Using the standard user from the JSON file
     test('should allow a valid user to login in', async ({ page }) => {
-        const loginPage = new LoginPage(page);
 
+        // Find the specific user from Array structure
+        const standardUser = users.find(u => u.type === 'valid');
+
+        // Checks the user is valid
+        if (!standardUser) throw new Error('Standar user not founf in JSON');
+
+        const loginPage = new LoginPage(page);
         await loginPage.navigate();
-        await loginPage.login(users.standard.user, users.standard.pass);
+        await loginPage.login(standardUser.user, standardUser.pass);
 
         // Validates that the user is redirected to the inventory page
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
@@ -25,10 +31,14 @@ test.describe('Login Security Tests', () => {
 
     // Using the Locked Out User from the JSON file
     test('should show an error for locked out users', async ({ page }) => {
-        const loginPage = new LoginPage(page);
 
+        const lockedUser = users.find(u => u.type === 'locked');
+
+        if (!lockedUser) throw new Error('Locked user not founf in JSON');
+
+        const loginPage = new LoginPage(page);
         await loginPage.navigate();
-        await loginPage.login(users.locked.user, users.locked.pass);
+        await loginPage.login(lockedUser.user, lockedUser.pass);
 
         // Validates that an error message is shown for locked out users
         const error = page.locator('[data-test="error"]');
