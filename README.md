@@ -2,13 +2,13 @@
 
 # Playwright TypeScript E2E Framework
 
-An automation suite for SauceDemo built with **TypeScript** and **Page Object Model (POM)** architecture.
+An automation suite for SauceDemo built with **TypeScript** and **Page Object Model (POM)** architecture, now featuring **API Testing** and **Network Interception**.
 
 ---
 
 ## 🏗️ Architecture & Design
 
-I built this framework to be organized and easy to update. It separates the "where" from the "what" so the code stays clean.
+I built this framework to be organized and easy to update. It separates the "where" from the "what" so the code stays clean and maintainable.
 
 | Layer | Implementation | Benefit |
 | :--- | :--- | :--- |
@@ -18,6 +18,10 @@ I built this framework to be organized and easy to update. It separates the "whe
 
 ## 💡 Technical Highlights
 
+* **API Mocking**: Implemented **Network Interception** to simulate successful logins, ensuring test stability when external APIs are restricted.
+
+* **Negative Testing**: Implemented **Login Failure Tests** to ensure the application handles invalid credentials.
+
 * **Type Safety**: Uses **Interfaces** to catch data errors during development.
 * **E2E Workflows**: Automates the whole journey from Login to Purchase confirmation.
 * **Parallel Execution**: Runs tests on **Chromium, Firefox, and WebKit** at the same time.
@@ -26,6 +30,8 @@ I built this framework to be organized and easy to update. It separates the "whe
 ## 🛠️ Commands
 
 * **Setup**: `npm install`
-* **Run Tests**: `npx playwright test`
+* **Run All Tests**: `npx playwright test`
+* **Run UI Tests**: `npx playwright test tests/login.spec.ts`
+* **Run API Tests**: `npx playwright test tests/api-login.spec.ts`
 * **UI Mode**: `npx playwright test --ui`
 * **Reports**: `npx playwright show-report`
