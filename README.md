@@ -2,7 +2,7 @@
 
 # Playwright TypeScript E2E Framework
 
-An automation suite for SauceDemo built with **TypeScript** and **Page Object Model (POM)** architecture, featuring **Hybrid API/UI Testing**, **Visual Regression**, and **Network Interception**.
+An automation suite for SauceDemo built with **TypeScript** and **Page Object Model (POM)** architecture, featuring **Hybrid API/UI Testing**, **Visual Regression**, and **Network Interception**, and **Performance Load Testing**.
 
 ---
 
@@ -14,6 +14,7 @@ I built this framework to be organized and easy to update. It separates the "whe
 | :--- | :--- | :--- |
 | **Pages** | Page Object Model (POM) | Encapsulates locators; prevents "fragile" tests. |
 | **Data** | JSON-based DDT | Validates multiple user personas via a single logic layer. |
+| **Performance**| k6 (JavaScript) | Simulates real-world traffic to find API bottlenecks. |
 | **CI/CD** | GitHub Actions | Automated validation on every commit (Continuous Integration). |
 
 ## 💡 Technical Highlights
@@ -30,7 +31,16 @@ I built this framework to be organized and easy to update. It separates the "whe
 * **E2E Workflows**: Automates the whole journey from Login to Purchase confirmation.
 * **Parallel Execution**: Runs tests on **Chromium, Firefox, and WebKit** at the same time.
 * **Easy Debugging**: Saves **Screenshots and Videos** automatically if a test fails.
+* **Performance Testing (k6)**: Ran automated load tests using traffic stages (Ramp-up, Peak, Ramp-down) to ensure the backend stays fast under pressure. Kept the p95 response time under 500ms.
 
+## 🚀 Performance Load Testing (k6)
+
+To simulate real user behavior, the API stress tests run in three stages:
+1. **Ramp-Up:** Slowly adds 20 Virtual Users (VUs) over 10 seconds to simulate incoming traffic.
+2. **Peak Load:** Holds a steady load of 20 VUs for 15 seconds to check if the server slows down under pressure.
+3. **Ramp-Down:** Slowly drops to 0 VUs over 10 seconds to make sure the server recovers properly.
+
+*Result: Achieved a 99.77% request success rate during the heaviest traffic.*
 
 ## 🛠️ Challenges Solved
 
@@ -47,5 +57,6 @@ While implementing visual testing, I encountered "false failures" where tests pa
 * **Run All Tests**: `npx playwright test`
 * **Run UI Tests**: `npx playwright test tests/login.spec.ts`
 * **Run API Tests**: `npx playwright test tests/api-login.spec.ts`
+* **Run Performance Tests**: `k6 run performance.js`
 * **UI Mode**: `npx playwright test --ui`
 * **Reports**: `npx playwright show-report`
